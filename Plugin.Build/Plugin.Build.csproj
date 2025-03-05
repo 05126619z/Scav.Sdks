@@ -8,7 +8,7 @@
     <Description>
       Provides MSBuild properties and targets for building and running a R.E.P.O. plugin.
     </Description>
-    <PackageTags>Repo, MSBuild, BepInEx, Plugin</PackageTags>
+    <PackageTags>REPO, MSBuild, BepInEx, Plugin</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
