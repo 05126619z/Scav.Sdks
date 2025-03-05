@@ -1,0 +1,9 @@
+﻿<Project>
+
+  <PropertyGroup>
+    <IsRepoProject>true</IsRepoProject>
+  </PropertyGroup>
+
+  <Import Project="Repo.Common.props" Condition="'$(RepoCommonPropsGotImported)' != 'true'" />
+  
+</Project>

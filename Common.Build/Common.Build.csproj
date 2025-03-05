@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.Build.NoTargets/3.7.56">
+
+  <PropertyGroup>
+    <NoTargetsDoNotReferenceOutputAssemblies>false</NoTargetsDoNotReferenceOutputAssemblies>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Description>
+      Provides minimal MSBuild properties for finding a R.E.P.O. installation on the local machine and other misc. targets.
+    </Description>
+    <PackageTags>REPO, MSBuild</PackageTags>
+  </PropertyGroup>
+
+</Project>

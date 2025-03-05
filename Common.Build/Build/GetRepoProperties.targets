@@ -1,0 +1,53 @@
+﻿<Project>
+
+  <PropertyGroup>
+    <GetRepoPropertiesTargetsGotImported>true</GetRepoPropertiesTargetsGotImported>
+  </PropertyGroup>
+  
+  <Target Name="GetRepoProperties"
+          Returns="@(_RepoProperties)">
+    <PropertyGroup>
+      <IsRepoProject Condition="'$(IsRepoProject)' != 'true'">false</IsRepoProject>
+      <IsRepoPluginProject Condition="'$(IsRepoPluginProject)' != 'true'">false</IsRepoPluginProject>
+      <IsRepoTestProject Condition="'$(IsRepoTestProject)' != 'true'">false</IsRepoTestProject>
+    </PropertyGroup>
+    <ItemGroup>
+      <_RepoProperties Include="$(MSBuildProjectFullPath)">
+        <IsRepoProject>$(IsRepoProject)</IsRepoProject>
+        <IsRepoPluginProject>$(IsRepoPluginProject)</IsRepoPluginProject>
+        <IsRepoTestProject>$(IsRepoTestProject)</IsRepoTestProject>
+        <GameDirectory>$(GameDirectory)</GameDirectory>
+        <GameExe>$(GameExe)</GameExe>
+        <GameExePath>$(GameExePath)</GameExePath>
+        <GameManagedDirectory>$(GameManagedDirectory)</GameManagedDirectory>
+        <PluginName>$(PluginName)</PluginName>
+        <PluginsDirectory>$(PluginsDirectory)</PluginsDirectory>
+        <PluginOutputSubdirectory>$(PluginOutputSubdirectory)</PluginOutputSubdirectory>
+        <PluginOutputDirectory>$(PluginOutputDirectory)</PluginOutputDirectory>
+      
+    </_RepoProperties>
+    </ItemGroup>
+  </Target>
+
+  <Target Name="GetProjectsWithRepoProperties"
+          DependsOnTargets="_SplitProjectReferencesByFileExistence"
+          Returns="@(ProjectWithRepoProperties)">
+    <PropertyGroup>
+      <_GetRepoPropertiesProjectProperties>
+        DisableFastUpToDateCheck=false;
+        CustomAfterMicrosoftCommonProps=$(MSBuildThisFileDirectory)Repo.AfterCommon.props;
+        CustomAfterMicrosoftCommonCrossTargetingTargets=$(MSBuildThisFileDirectory)Repo.AfterCommon.targets;
+        CustomAfterMicrosoftCommonTargets=$(MSBuildThisFileDirectory)Repo.AfterCommon.targets;
+      </_GetRepoPropertiesProjectProperties>
+    </PropertyGroup>
+
+    <MSBuild Projects="@(_MSBuildProjectReferenceExistent)"
+             Targets="GetRepoProperties"
+             BuildInParallel="$(BuildInParallel)"
+             Properties="%(_MSBuildProjectReferenceExistent.SetConfiguration); %(_MSBuildProjectReferenceExistent.SetPlatform); $(_GetRepoPropertiesProjectProperties)"
+             RemoveProperties="%(_MSBuildProjectReferenceExistent.GlobalPropertiesToRemove)">
+      <Output TaskParameter="TargetOutputs" ItemName="ProjectWithRepoProperties" />
+    </MSBuild>
+  </Target>
+  
+</Project>

@@ -1,0 +1,30 @@
+﻿<Project>
+  
+  <PropertyGroup>
+    <RepoCommonPropsGotImported>true</RepoCommonPropsGotImported>
+  </PropertyGroup>
+  
+  <PropertyGroup>
+    <_DirectoryRepoProps>$([MSBuild]::GetPathOfFileAbove('Directory.Repo.props', $(MSBuildProjectDirectory)))</_DirectoryRepoProps>
+    <_ShouldImportDirectoryRepoProps>false</_ShouldImportDirectoryRepoProps>
+    <_ShouldImportDirectoryRepoProps Condition="Exists($(_DirectoryRepoProps)) and '$(DirectoryRepoPropsGotImported)' != 'true'">true</_ShouldImportDirectoryRepoProps>
+  </PropertyGroup>
+
+  <Import Project="$(_DirectoryRepoProps)" Condition="$(_ShouldImportDirectoryRepoProps)" />
+  <PropertyGroup Condition="$(_ShouldImportDirectoryRepoProps)" >
+    <DirectoryRepoPropsGotImported>true</DirectoryRepoPropsGotImported>
+  </PropertyGroup>
+
+  <Import Project="FindGameDirectory.props" Condition="'$(GameDirectory)' == '' and '$(FindGameDirectoryPropsGotImported)' != 'true'" />
+  <Import Project="FindBepInExDirectory.props" Condition="'$(GameDirectory)' != '' and '$(FindBepInExDirectoryPropsGotImported)' != 'true'" />
+
+  <PropertyGroup>
+    <GameDirectory Condition="Exists($(GameDirectory))">$([MSBuild]::NormalizeDirectory($(GameDirectory)))</GameDirectory>
+    <BepInExDirectory Condition="Exists($(BepInExDirectory))">$([MSBuild]::NormalizeDirectory($(BepInExDirectory)))</BepInExDirectory>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <GameExe Condition="'$(GameExe)' == ''">REPO.exe</GameExe>
+  </PropertyGroup>
+  
+</Project>

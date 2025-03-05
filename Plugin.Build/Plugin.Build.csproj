@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.Build.NoTargets/3.7.56">
+
+  <PropertyGroup>
+    <NoTargetsDoNotReferenceOutputAssemblies>false</NoTargetsDoNotReferenceOutputAssemblies>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Description>
+      Provides MSBuild properties and targets for building and running a R.E.P.O. plugin.
+    </Description>
+    <PackageTags>Repo, MSBuild, BepInEx, Plugin</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../Common.Build/Common.Build.csproj" IncludeAssets="all" ExcludeAssets="none" PrivateAssets="none" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,43 @@
+<Project>
+  <ItemGroup Condition="$(IsPackable)">
+    <None Update="$(MSBuildProjectDirectory)/README.md" Pack="true" PackagePath="/" />
+    <None Include="$(MSBuildProjectDirectory)/Build/**" Pack="true" PackagePath="build/%(RecursiveDir)" />
+    <None Include="$(MSBuildProjectDirectory)/Sdk/**" Pack="true" PackagePath="sdk/%(RecursiveDir)" />
+    <None Include="$(MSBuildProjectDirectory)/Build/**" Pack="true" PackagePath="sdk/%(RecursiveDir)" />
+  </ItemGroup>
+
+  <ItemGroup Condition="$(IsPackable)">
+    <PackageReference Include="Linkoid.Build.NuGetPushLocal" Version="1.0.0" PrivateAssets="all" />
+  </ItemGroup>
+
+  <Target Name="GetPackage"
+        DependsOnTargets="$(PackDependsOn)"
+        Returns="@(_GetPackageOutput)"
+        Condition="'$(IsPackable)' == 'true'">
+    <ItemGroup>
+      <_GetPackageOutput Include="@(NuGetPackOutput->WithMetadataValue('Extension', '.nupkg'))">
+        <PackageId>$(PackageId)</PackageId>
+        <PackageVersion>$(PackageVersion)</PackageVersion>
+      </_GetPackageOutput>
+    </ItemGroup>
+  </Target>
+
+  <Target Name="_ValidatePackageForRelease"
+          Condition="'$(IsPackable)' == 'true'">
+    <Error Condition="$(Configuration) != 'Release'" Text="Cannot push package when Configuration is not 'Release'" />
+    <Error Condition="!$(PackageId.StartsWith('Linkoid.Repo.'))" Text="PackageId does not start with 'Linkoid.Repo.'" />
+    <Error Condition="!Exists(@(None->WithMetadataValue('Filename', 'README')))" Text="Missing the README" />
+    <Error Condition="'$(Description)' == ''" Text="Missing Description" />
+  </Target>
+
+  <Target Name="NuGetPush"
+          DependsOnTargets="_ValidatePackageForRelease;GetPackage"
+          Condition="'$(IsPackable)' == 'true'">
+    <PropertyGroup>
+      <NuGetPushSource Condition="'$(NuGetPushSource)' == ''">$(DefaultPushSource)</NuGetPushSource>
+      <NuGetPushSource Condition="'$(NuGetPushSource)' == ''">nuget.org</NuGetPushSource>
+    </PropertyGroup>
+    <Exec Command="dotnet nuget push @(_GetPackageOutput) -s $(NuGetPushSource) --skip-duplicate" />
+  </Target>
+  
+</Project>

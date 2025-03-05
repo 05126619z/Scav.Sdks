@@ -1,0 +1,22 @@
+<Project>
+  <PropertyGroup>
+    <AssemblyName>Linkoid.Repo.$(MSBuildProjectName)</AssemblyName>
+    <RootNamespace>Linkoid.Repo.$(MSBuildProjectName)</RootNamespace>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <LangVersion>12</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+  </PropertyGroup>
+  
+  <PropertyGroup>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <PackageId>Linkoid.Repo.$(MSBuildProjectName)</PackageId>
+    <Authors>linkoid</Authors>
+    <VersionPrefix>0.1.0</VersionPrefix>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/linkoid/Repo.Sdks</RepositoryUrl>
+    <DevelopmentDependency>true</DevelopmentDependency>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
+</Project>
