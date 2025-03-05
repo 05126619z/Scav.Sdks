@@ -18,9 +18,15 @@ This monorepo contains source code for multiple SDK and template packages which 
 | [Test.Build  ](/Test.Build  )          | Build a test project for a R.E.P.O. plugin.                | [![NuGet](https://img.shields.io/nuget/v/Linkoid.Repo.Test.Build    )](https://www.nuget.org/packages/Linkoid.Repo.Test.Build/    ) | 
 | [Test.Templates](/Test.Templates)      | Templates for R.E.P.O. plugin test projects.               | [![NuGet](https://img.shields.io/nuget/v/Linkoid.Repo.Test.Templates)](https://www.nuget.org/packages/Linkoid.Repo.Test.Templates/) |
 
-## Why should I use SDKs and Templates?
+## Creating a Plugin
+To get started using the SDK to create a plugin,
+setup a dotnet project and include the `Linkoid.Repo.Plugin.Build` SDK.
+Check the [Plugin SDK README](https://github.com/linkoid/Repo.Sdks/tree/main/Plugin.Build#readme) for details on how to use it.
+
+## Why Should I use SDKs and Templates?
 SDKs and Templates setup a project to include most of the things need for modding in a standardized way with minimal manual setup.
-These SDKs are designed to be very flexible and overridable, and not interfere with other SDKs.
+These SDKs are designed to be very flexible and overridable, and to not interfere with other SDKs.
+These SDKs also a enable others to easily contribute to a codebase without having to uniquily configure every project.
 By leveraging the full power of MSBuild, these SDKs will automatically detect the local installation of R.E.P.O.,
 and copy the built plugin to the plugins folder automatically, then start the game with the IDE's play button or `dotnet run`.
 

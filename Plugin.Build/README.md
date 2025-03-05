@@ -12,8 +12,21 @@ Provides MSBuild properties and targets for building and running a R.E.P.O. plug
 ## Usage
 To use this package, add a package reference to the project:
 ```xml
-<PackageReference Include="Linkoid.Repo.Common.Build" Version="*" PrivateAssets="all" />
+<ItemGroup>
+	<PackageReference Include="Linkoid.Repo.Common.Build" Version="*" PrivateAssets="all" />
+</ItemGroup>
 ```
+
+Use a NuGet Package to include game libraries, or enable automatic game references
+```xml
+<PropertyGroup>
+	<EnableGameReferences>true</EnableGameReferences>
+</PropertyGroup>
+```
+
+If automatic game references cannot be resolved, setup a `Directory.Repo.props` file.
+Information regarding how to setup Directory.Repo.props can be found in the 
+[Common Build SDK README](https://github.com/linkoid/Repo.Sdks/tree/main/Common.Build#readme).
 
 ## Features
 * Automatically locates local R.E.P.O. installation with [Repo.Common.Build](https://github.com/linkoid/Repo.Sdks/tree/main/Common.Build#Repo-Common-Build-SDK).

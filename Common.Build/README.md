@@ -29,12 +29,17 @@ project/all projects in a directory and it's subdirectories.
 Even if R.E.P.O. can be found automatically, it can be overriden
 to use a special version/installation of the game.
 
+Another good use case is to specify the profile folder used for mod testing,
+and specifying launch arguments to run the game with the correct mod profile.
+
 Here is an example `Directory.Repo.props` file:
 ```xml
 <Project>
   <PropertyGroup>
     <GameDirectory>C:\Path\To\REPO\</GameDirectory>
-    <StartArguments>--doorstop-enable true --doorstop-target "%AppData%\com.kesomannen.gale\repo\profiles\Default\BepInEx\core\BepInEx.Preloader.dll" --gale-profile "Default"</StartArguments>
+    <GaleProfile>Default</GaleProfile>
+    <BepInExDirectory>%AppData%\com.kesomannen.gale\repo\profiles\$(GaleProfile)\BepInEx</BepInExDirectory>
+    <StartArguments>--doorstop-enable true --doorstop-target "%AppData%\com.kesomannen.gale\repo\profiles\$(GaleProfile)\BepInEx\core\BepInEx.Preloader.dll" --gale-profile "$(GaleProfile)"</StartArguments>
   </PropertyGroup>
 </Project>
 ```
