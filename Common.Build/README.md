@@ -37,9 +37,9 @@ Here is an example `Directory.Repo.props` file:
 <Project>
   <PropertyGroup>
     <GameDirectory>C:\Path\To\REPO\</GameDirectory>
-    <GaleProfile>Default</GaleProfile>
-    <BepInExDirectory>%AppData%\com.kesomannen.gale\repo\profiles\$(GaleProfile)\BepInEx</BepInExDirectory>
-    <StartArguments>--doorstop-enable true --doorstop-target "%AppData%\com.kesomannen.gale\repo\profiles\$(GaleProfile)\BepInEx\core\BepInEx.Preloader.dll" --gale-profile "$(GaleProfile)"</StartArguments>
+    <GaleProfileName>Default</GaleProfileName>
+    <BepInExDirectory>$(AppData)\com.kesomannen.gale\repo\profiles\$(GaleProfileName)\BepInEx</BepInExDirectory>
+    <StartArguments>--doorstop-enable true --doorstop-target "$(AppData)\com.kesomannen.gale\repo\profiles\$(GaleProfileName)\BepInEx\core\BepInEx.Preloader.dll" --gale-profile "$(GaleProfileName)"</StartArguments>
   </PropertyGroup>
 </Project>
 ```
