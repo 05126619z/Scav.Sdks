@@ -15,7 +15,7 @@ This monorepo contains source code for multiple SDK and template packages which 
 |----------------------------------------|------------------------------------------------------------|:--------------:|
 | [Common.Build](/Common.Build)          | Find the local installation of R.E.P.O.                    | [![NuGet](https://img.shields.io/nuget/v/Linkoid.Repo.Common.Build   )](https://www.nuget.org/packages/Linkoid.Repo.Common.Build/    ) | 
 | [Plugin.Build](/Plugin.Build)          | Build and run a R.E.P.O. plugin.                           | [![NuGet](https://img.shields.io/nuget/v/Linkoid.Repo.Plugin.Build   )](https://www.nuget.org/packages/Linkoid.Repo.Plugin.Build/    ) | 
-| [Plugin.Templates](/Plugin.Templates)  | Templates for R.E.P.O. plugin projects.                    | [![NuGet](https://img.shields.io/nuget/v/Linkoid.Repo.Plugn.Templates)](https://www.nuget.org/packages/Linkoid.Repo.Plugin.Templates/) |
+| [Plugin.Templates](/Plugin.Templates)  | Templates for R.E.P.O. plugin projects.                    | [![NuGet](https://img.shields.io/nuget/v/Linkoid.Repo.Plugin.Templates)](https://www.nuget.org/packages/Linkoid.Repo.Plugin.Templates/) |
 | [Test.Build  ](/Test.Build  )          | Build a test project for a R.E.P.O. plugin.                | [![NuGet](https://img.shields.io/nuget/v/Linkoid.Repo.Test.Build     )](https://www.nuget.org/packages/Linkoid.Repo.Test.Build/      ) | 
 
 ## Creating a Plugin with the SDK
