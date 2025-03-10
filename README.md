@@ -20,10 +20,14 @@ This monorepo contains source code for multiple SDK and template packages which 
 
 ## Creating a Plugin with the SDK
 There are two ways to the SDK to quickly get started:
-a. Create a new project using a template.
+* Create a new project using a template.
 	* See the [Plugin Templates README](https://github.com/linkoid/Repo.Sdks/tree/main/Plugin.Templates#readme)
-b. For an existing project, add a package reference to `Linkoid.Repo.Plugin.Build`.
+* For an existing project, add a package reference to `Linkoid.Repo.Plugin.Build`.
 	* See the [Plugin SDK README](https://github.com/linkoid/Repo.Sdks/tree/main/Plugin.Build#readme).
+
+After that, if it hasn't been done already, a `Directory.Repo.props` file should configured in a folder above all R.E.P.O. solutions/projects.
+(e.g. in the User Profile folder.)
+An explanation and example can be found in the [Common.Build Readme](https://github.com/linkoid/Repo.Sdks/tree/main/Common.Build#directory-repo-props--targets-files).
 
 ## Why Should I use SDKs and Templates?
 SDKs and Templates setup a project to include most of the things need for modding in a standardized way with minimal manual setup.
