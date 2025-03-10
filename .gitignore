@@ -9,7 +9,7 @@
 [Bb]uild[Ll]og.*
 
 # Repository specific files
-Test.Templates/Content/**/.runsettings
+Plugin.Templates/Content/**/.runsettings
 
 # User-specific files
 *.rsuser

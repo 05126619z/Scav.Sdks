@@ -1,4 +1,4 @@
-﻿# R.E.P.O. Modding SDKs and Templates
+﻿# R.E.P.O. Modding SDKs and Templates <img src="icon.png" align="right" width="100">
 [![GitHub](https://img.shields.io/badge/GitHub-%23121011.svg?logo=github&logoColor=white)](https://github.com/linkoid/Repo.Sdks)
 [![Stars](https://img.shields.io/github/stars/linkoid/Repo.Sdks)](https://github.com/linkoid/Repo.Sdks/stargazers)
 [![License](https://img.shields.io/github/license/linkoid/Repo.Sdks)](https://github.com/linkoid/Repo.Sdks/tree/main?tab=MIT-1-ov-file)
@@ -13,15 +13,17 @@ This monorepo contains source code for multiple SDK and template packages which 
 
 | Project                                | Description                                                | Latest Package |
 |----------------------------------------|------------------------------------------------------------|:--------------:|
-| [Common.Build](/Common.Build)          | Find the local installation of R.E.P.O.                    | [![NuGet](https://img.shields.io/nuget/v/Linkoid.Repo.Common.Build  )](https://www.nuget.org/packages/Linkoid.Repo.Common.Build/  ) | 
-| [Plugin.Build](/Plugin.Build)          | Build and run a R.E.P.O. plugin.                           | [![NuGet](https://img.shields.io/nuget/v/Linkoid.Repo.Plugin.Build  )](https://www.nuget.org/packages/Linkoid.Repo.Plugin.Build/  ) | 
-| [Test.Build  ](/Test.Build  )          | Build a test project for a R.E.P.O. plugin.                | [![NuGet](https://img.shields.io/nuget/v/Linkoid.Repo.Test.Build    )](https://www.nuget.org/packages/Linkoid.Repo.Test.Build/    ) | 
-| [Test.Templates](/Test.Templates)      | Templates for R.E.P.O. plugin test projects.               | [![NuGet](https://img.shields.io/nuget/v/Linkoid.Repo.Test.Templates)](https://www.nuget.org/packages/Linkoid.Repo.Test.Templates/) |
+| [Common.Build](/Common.Build)          | Find the local installation of R.E.P.O.                    | [![NuGet](https://img.shields.io/nuget/v/Linkoid.Repo.Common.Build   )](https://www.nuget.org/packages/Linkoid.Repo.Common.Build/    ) | 
+| [Plugin.Build](/Plugin.Build)          | Build and run a R.E.P.O. plugin.                           | [![NuGet](https://img.shields.io/nuget/v/Linkoid.Repo.Plugin.Build   )](https://www.nuget.org/packages/Linkoid.Repo.Plugin.Build/    ) | 
+| [Plugin.Templates](/Plugin.Templates)  | Templates for R.E.P.O. plugin projects.                    | [![NuGet](https://img.shields.io/nuget/v/Linkoid.Repo.Plugn.Templates)](https://www.nuget.org/packages/Linkoid.Repo.Plugin.Templates/) |
+| [Test.Build  ](/Test.Build  )          | Build a test project for a R.E.P.O. plugin.                | [![NuGet](https://img.shields.io/nuget/v/Linkoid.Repo.Test.Build     )](https://www.nuget.org/packages/Linkoid.Repo.Test.Build/      ) | 
 
-## Creating a Plugin
-To get started using the SDK to create a plugin,
-setup a dotnet project and include the `Linkoid.Repo.Plugin.Build` SDK.
-Check the [Plugin SDK README](https://github.com/linkoid/Repo.Sdks/tree/main/Plugin.Build#readme) for details on how to use it.
+## Creating a Plugin with the SDK
+There are two ways to the SDK to quickly get started:
+a. Create a new project using a template.
+	* See the [Plugin Templates README](https://github.com/linkoid/Repo.Sdks/tree/main/Plugin.Templates#readme)
+b. For an existing project, add a package reference to `Linkoid.Repo.Plugin.Build`.
+	* See the [Plugin SDK README](https://github.com/linkoid/Repo.Sdks/tree/main/Plugin.Build#readme).
 
 ## Why Should I use SDKs and Templates?
 SDKs and Templates setup a project to include most of the things need for modding in a standardized way with minimal manual setup.
@@ -29,8 +31,6 @@ These SDKs are designed to be very flexible and overridable, and to not interfer
 These SDKs also a enable others to easily contribute to a codebase without having to uniquily configure every project.
 By leveraging the full power of MSBuild, these SDKs will automatically detect the local installation of R.E.P.O.,
 and copy the built plugin to the plugins folder automatically, then start the game with the IDE's play button or `dotnet run`.
-
-*Templates are currently a work in progress.*
 
 ## The Test Framework
 *Work in progress.*

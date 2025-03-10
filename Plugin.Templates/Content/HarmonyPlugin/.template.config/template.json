@@ -1,0 +1,55 @@
+﻿{
+ "$schema": "http://json.schemastore.org/template",
+ "author": "linkoid",
+ "classifications": [ "BepInEx", "R.E.P.O.", "Mods", "Harmony" ],
+ "identity": "Linkoid.Repo.Plugin.Templates.Harmony.Plugin",
+ "name": "R.E.P.O. Harmony Plugin",
+ "description": "A project that contains a BepInEx plugin which which uses Harmony to patch R.E.P.O.",
+ "shortName": [ "repoharmony", "repoharmonyplugin" ],
+ "tags": {
+  "language": "C#",
+  "type": "project"
+ },
+ "sources": [
+  {
+   "modifiers": [
+    {
+     "condition": "(!includetest)",
+     "exclude": [ "HarmonyPlugin.0.Tests/**/*" ]
+    }
+   ]
+  }
+ ],
+ "primaryOutputs": [
+  { "path": "HarmonyPlugin.0/HarmonyPlugin0.csproj" },
+  { "path": "HarmonyPlugin.0/HarmonyPlugin0.cs" }
+ ],
+ "sourceName": "HarmonyPlugin.0",
+ "defaultName": "MyPlugin",
+ "preferNameDirectory": false,
+ "symbols": {
+  "HostIdentifier": {
+   "type": "bind",
+   "binding": "host:HostIdentifier"
+  },
+  "Author": {
+   "type": "parameter",
+   "datatype": "text",
+   "displayName": "Author",
+   "description": "The author of the plugin",
+   "isRequired": true,
+   "replaces": "{Author}"
+  }
+ },
+ "postActions": [
+  {
+   "id": "openInEditor",
+   "condition": "(HostIdentifier != \"dotnetcli\" && HostIdentifier != \"dotnetcli-preview\")",
+   "description": "Opens generated files in the editor",
+   "manualInstructions": [],
+   "actionId": "84C0DA21-51C8-4541-9940-6CA19AF04EE6",
+   "args": { "files": "1" },
+   "continueOnError": true
+  }
+ ]
+}
