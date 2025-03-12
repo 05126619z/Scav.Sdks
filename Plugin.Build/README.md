@@ -75,6 +75,8 @@ to the output directory to also be copied to plugin output.
 By default, the following files are copied to the plugin output if they are found:
 * README.md
 * README.txt
+* CHANGELOG.md
+* CHANGELOG.txt
 * manifest.json
 * icon.png
 

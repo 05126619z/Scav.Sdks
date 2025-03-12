@@ -1,7 +1,7 @@
 ﻿<Project>
 
   <ItemGroup>
-    <None Update="README.md;README.txt;manifest.json;icon.png">
+    <None Update="README.md;README.txt;CHANGELOG.md;CHANGELOG.txt;manifest.json;icon.png">
       <CopyToPluginOutputDirectory Condition="'%(None.CopyToPluginOutputDirectory)' == ''">PreserveNewest</CopyToPluginOutputDirectory>
     </None>
   </ItemGroup>
