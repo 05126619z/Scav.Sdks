@@ -12,14 +12,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Directory.Build.props = Directory.Build.props
 		Directory.Build.targets = Directory.Build.targets
 		LICENSE.txt = LICENSE.txt
+		logo.png = logo.png
 		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Plugin.Build", "Plugin.Build\Plugin.Build.csproj", "{221358BC-F814-413E-828E-C60ADF0183AE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plugin.Templates", "Plugin.Templates\Plugin.Templates.csproj", "{DDCC62AC-92C8-4130-BC9A-14657133AFE2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Plugin.Templates", "Plugin.Templates\Plugin.Templates.csproj", "{DDCC62AC-92C8-4130-BC9A-14657133AFE2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plugin.Templates.Tests", "Plugin.Templates.Tests\Plugin.Templates.Tests.csproj", "{FBFDA6E3-88DE-4B48-A162-ACBC0DED71EA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Plugin.Templates.Tests", "Plugin.Templates.Tests\Plugin.Templates.Tests.csproj", "{FBFDA6E3-88DE-4B48-A162-ACBC0DED71EA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

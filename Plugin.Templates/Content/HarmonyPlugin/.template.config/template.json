@@ -10,19 +10,10 @@
   "language": "C#",
   "type": "project"
  },
- "sources": [
-  {
-   "modifiers": [
-    {
-     "condition": "(!includetest)",
-     "exclude": [ "HarmonyPlugin.0.Tests/**/*" ]
-    }
-   ]
-  }
- ],
+ "sources": [ ],
  "primaryOutputs": [
-  { "path": "HarmonyPlugin.0/HarmonyPlugin0.csproj" },
-  { "path": "HarmonyPlugin.0/HarmonyPlugin0.cs" }
+  { "path": "HarmonyPlugin0.csproj" },
+  { "path": "HarmonyPlugin0.cs" }
  ],
  "sourceName": "HarmonyPlugin.0",
  "defaultName": "MyPlugin",

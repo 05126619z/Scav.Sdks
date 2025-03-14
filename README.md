@@ -1,4 +1,4 @@
-﻿# R.E.P.O. Modding SDKs and Templates <img src="icon.png" align="right" width="100">
+﻿# R.E.P.O. Modding SDKs and Templates <img src="logo.png" align="right" width="100">
 [![GitHub](https://img.shields.io/badge/GitHub-%23121011.svg?logo=github&logoColor=white)](https://github.com/linkoid/Repo.Sdks)
 [![Stars](https://img.shields.io/github/stars/linkoid/Repo.Sdks)](https://github.com/linkoid/Repo.Sdks/stargazers)
 [![License](https://img.shields.io/github/license/linkoid/Repo.Sdks)](https://github.com/linkoid/Repo.Sdks/tree/main?tab=MIT-1-ov-file)
