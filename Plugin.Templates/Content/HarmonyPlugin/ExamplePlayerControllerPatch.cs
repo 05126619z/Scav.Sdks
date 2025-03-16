@@ -6,17 +6,17 @@ namespace HarmonyPlugin._0;
 [HarmonyPatch(typeof(PlayerController))]
 static class ExamplePlayerControllerPatch
 {
-    [HarmonyPrefix, HarmonyPatch("Update")]
-    private static void Update_Prefix(PlayerController __instance)
+    [HarmonyPrefix, HarmonyPatch(nameof(PlayerController.Start))]
+    private static void Start_Prefix(PlayerController __instance)
     {
-        // Code to execute for each PlayerController *before* Update() is called.
-        HarmonyPlugin__0.Logger.LogDebug($"{__instance} Update Prefix");
+        // Code to execute for each PlayerController *before* Start() is called.
+        HarmonyPlugin__0.Logger.LogDebug($"{__instance} Start Prefix");
     }
 
-    [HarmonyPostfix, HarmonyPatch("Update")]
-    private static void Update_Postfix(PlayerController __instance)
+    [HarmonyPostfix, HarmonyPatch(nameof(PlayerController.Start))]
+    private static void Start_Postfix(PlayerController __instance)
     {
-        // Code to execute for each PlayerController *after* Update() is called.
-        HarmonyPlugin__0.Logger.LogDebug($"{__instance} Update Postfix");
+        // Code to execute for each PlayerController *after* Start() is called.
+        HarmonyPlugin__0.Logger.LogDebug($"{__instance} Start Postfix");
     }
 }

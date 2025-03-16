@@ -9,7 +9,7 @@
   <PropertyGroup>
     <!-- Keep package type as 'Template' to show the package as a template package on nuget.org and make your template available in dotnet new search.-->
     <PackageType>Template</PackageType>
-    <PackageVersion>1.3.0</PackageVersion>
+    <PackageVersion>1.4.0</PackageVersion>
     <Description>Provides templates for testing R.E.P.O. plugins</Description>
     <PackageTags>R.E.P.O., BepInEx</PackageTags>
     <IncludeContentInPack>true</IncludeContentInPack>
