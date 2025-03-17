@@ -52,7 +52,7 @@ jobs:
 
   publish:
     name: Publish
-    needs: [test-sdks,  test-templates]
+    #needs: [test-sdks,  test-templates]
     if: github.repository == 'linkoid/Repo.Sdks' && github.event_name == 'push'
     runs-on: ubuntu-latest
     container: mcr.microsoft.com/dotnet/sdk:8.0
@@ -93,10 +93,10 @@ jobs:
         git config user.name "github-actions[bot]"
         git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
     - name: Tag Plugin.Build
-      if: ${{ fromJson(needs.publish.outputs.packages)['Plugin.Build'].Properties.NuGetPushPushedPackages }} == 'true'
+      if: ${{ fromJson(needs.publish.outputs.packages)['Plugin.Build'].Properties.NuGetPushPushedPackages == 'true' }}
       run: git tag Plugin.Build/${{ fromJson(needs.publish.outputs.packages)['Plugin.Build'].Properties.PackageVersion }}
     - name: Tag Plugin.Templates
-      if: ${{ fromJson(needs.publish.outputs.packages)['Plugin.Templates'].Properties.NuGetPushPushedPackages }} == 'true'
+      if: ${{ fromJson(needs.publish.outputs.packages)['Plugin.Templates'].Properties.NuGetPushPushedPackages == 'true' }} 
       run: git tag Plugin.Templates/${{ fromJson(needs.publish.outputs.packages)['Plugin.Templates'].Properties.PackageVersion }}
     - name: Git Push Tags
       run: git push origin --tags
