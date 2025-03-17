@@ -26,13 +26,13 @@ jobs:
   #        **/bin/**
 
   test-sdks:
-    name: Test
+    name: Test SDKs
     runs-on: ubuntu-latest
     container: mcr.microsoft.com/dotnet/sdk:8.0
     steps:
     - uses: actions/checkout@v4
     - name: NuGet Push Local
-      run: dotnet build -c Release --nologo -t:NuGetPushLocal
+      run: dotnet build -c Release --nologo -t:Pack
     - name: Test SDKs in Templates
       run: |
         for project in *.Templates.Tests/TestResults/Snapshots/*.verified/**/*.csproj; do
@@ -40,7 +40,7 @@ jobs:
         done
 
   test-templates:
-    name: Test
+    name: Test Templates
     runs-on: ubuntu-latest
     container: mcr.microsoft.com/dotnet/sdk:8.0
     steps:
