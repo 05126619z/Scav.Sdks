@@ -40,7 +40,6 @@
       <_NuGetPushApiKeyArgs Condition="'$(NuGetPushApiKey)' != ''">--api-key $(NuGetPushApiKey)</_NuGetPushApiKeyArgs>
     </PropertyGroup>
     <Exec Command="dotnet nuget push @(_GetPackageOutput) --source $(NuGetPushSource) --skip-duplicate --force-english-output $(_NuGetPushApiKeyArgs)"
-          ContinueOnError="true"
           ConsoleToMsBuild="true">
       <Output TaskParameter="ConsoleOutput" ItemName="_NuGetPushConsoleOutput"/>
     </Exec>

@@ -66,7 +66,7 @@ jobs:
         run: |
           json={
           for project in Common.Build Plugin.Build Plugin.Templates; do
-            result=`dotnet build $project/$project.csproj -c Release -t:NuGetPush -getProperty:Version,PackageId,NuGetPushPushedPackages -p:NuGetPushApiKey=${{secrets.NUGET_APIKEY}}`
+            result=`dotnet build $project/$project.csproj -c Release -t:NuGetPush -getProperty:PackageVersion,PackageId,NuGetPushPushedPackages -p:NuGetPushApiKey=${{secrets.NUGET_APIKEY}}`
             json=$json' "'$project'": '$result,
           done
           json=${json%,}' }'
@@ -93,11 +93,11 @@ jobs:
         git config user.name "github-actions[bot]"
         git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
     - name: Tag Plugin.Build
-      if: ${{ fromJson(needs.publish.outputs.packages)['Plugin.Build'].Properties.NuGetPushPushedPackages }}
-      run: git tag Plugin.Build/${{ fromJson(needs.publish.outputs.packages)['Plugin.Build'].Properties.Version }}
+      if: ${{ fromJson(needs.publish.outputs.packages)['Plugin.Build'].Properties.NuGetPushPushedPackages }} == 'true'
+      run: git tag Plugin.Build/${{ fromJson(needs.publish.outputs.packages)['Plugin.Build'].Properties.PackageVersion }}
     - name: Tag Plugin.Templates
-      if: ${{ fromJson(needs.publish.outputs.packages)['Plugin.Build'].Properties.NuGetPushPushedPackages }}
-      run: git tag Plugin.Templates/${{ fromJson(needs.publish.outputs.packages)['Plugin.Templates'].Properties.Version }}
+      if: ${{ fromJson(needs.publish.outputs.packages)['Plugin.Templates'].Properties.NuGetPushPushedPackages }} == 'true'
+      run: git tag Plugin.Templates/${{ fromJson(needs.publish.outputs.packages)['Plugin.Templates'].Properties.PackageVersion }}
     - name: Git Push Tags
       run: git push origin --tags
 
