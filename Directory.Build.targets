@@ -7,7 +7,7 @@
   </ItemGroup>
 
   <ItemGroup Condition="$(IsPackable)">
-    <PackageReference Include="Linkoid.Build.NuGetPushLocal" Version="1.0.0" PrivateAssets="all" />
+    <PackageReference Include="Linkoid.Build.NuGetPushLocal" Version="2.0.0" PrivateAssets="all" />
   </ItemGroup>
 
   <Target Name="GetPackage"
@@ -32,12 +32,43 @@
 
   <Target Name="NuGetPush"
           DependsOnTargets="_ValidatePackageForRelease;GetPackage"
+          Returns="@(_NuGetPushedPackages)"
           Condition="'$(IsPackable)' == 'true'">
     <PropertyGroup>
       <NuGetPushSource Condition="'$(NuGetPushSource)' == ''">$(DefaultPushSource)</NuGetPushSource>
       <NuGetPushSource Condition="'$(NuGetPushSource)' == ''">nuget.org</NuGetPushSource>
+      <_NuGetPushApiKeyArgs Condition="'$(NuGetPushApiKey)' != ''">--api-key $(NuGetPushApiKey)</_NuGetPushApiKeyArgs>
     </PropertyGroup>
-    <Exec Command="dotnet nuget push @(_GetPackageOutput) -s $(NuGetPushSource) --skip-duplicate" />
+    <Exec Command="dotnet nuget push @(_GetPackageOutput) --source $(NuGetPushSource) --skip-duplicate --force-english-output $(_NuGetPushApiKeyArgs)"
+          ContinueOnError="true"
+          ConsoleToMsBuild="true">
+      <Output TaskParameter="ConsoleOutput" ItemName="_NuGetPushConsoleOutput"/>
+    </Exec>
+
+    <Message Text="@(ConsoleOutput, '\n')" Importance="high" />
+
+    <ItemGroup>
+      <_NuGetPushPasses Include="@(_NuGetPushConsoleOutput)" Condition="'%(_NuGetPushConsoleOutput.Identity)' == 'Your package was pushed.'" />
+      
+      <_NuGetPushFails Include="@(_NuGetPushConsoleOutput)"
+                       Condition="$([System.String]::new('%(_NuGetPushConsoleOutput.Identity)').Contains('already exists at feed'))">
+        <PackagePath>$(
+          [System.String]::new("%(_NuGetPushConsoleOutput.Identity)")
+          .Substring(9)
+          .Split("'")[0]
+        )</PackagePath>
+      </_NuGetPushFails>
+
+      <_NuGetPushedPackages Include="@(_GetPackageOutput)" Exclude="@(_NuGetPushFails->'%(PackagePath)')">
+        <PackageSource>$(NuGetPushSource)</PackageSource>
+      </_NuGetPushedPackages>
+    </ItemGroup>
+
+    <PropertyGroup>
+      <NuGetPushPushedPackages Condition="'@(_NuGetPushPasses)' != ''">true</NuGetPushPushedPackages>
+      <NuGetPushPushedPackages Condition="'@(_NuGetPushPasses)' == ''">false</NuGetPushPushedPackages>
+    </PropertyGroup>
+    
   </Target>
   
 </Project>

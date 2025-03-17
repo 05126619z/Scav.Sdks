@@ -1,0 +1,106 @@
+# This workflow will build a .NET project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
+
+name: .NET
+
+on:
+  push:
+    branches: [ "main", "workflow-tests" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  #build:
+  #  runs-on: ubuntu-latest
+  #  container: mcr.microsoft.com/dotnet/sdk:8.0
+  #  steps:
+  #  - uses: actions/checkout@v4
+  #  - name: Build
+  #    run: dotnet build -c Release
+  #  - name: Upload Build
+  #    uses: actions/upload-artifact@v4
+  #    with:
+  #      name: build
+  #      path: |
+  #        **/obj/**
+  #        **/bin/**
+
+  test-sdks:
+    name: Test
+    runs-on: ubuntu-latest
+    container: mcr.microsoft.com/dotnet/sdk:8.0
+    steps:
+    - uses: actions/checkout@v4
+    - name: NuGet Push Local
+      run: dotnet build -c Release --nologo -t:NuGetPushLocal
+    - name: Test SDKs in Templates
+      run: |
+        for project in *.Templates.Tests/TestResults/Snapshots/*.verified/**/*.csproj; do
+          dotnet build $project -c Release
+        done
+
+  test-templates:
+    name: Test
+    runs-on: ubuntu-latest
+    container: mcr.microsoft.com/dotnet/sdk:8.0
+    steps:
+    - uses: actions/checkout@v4
+    - name: Build
+      run: dotnet build -c Release --nologo
+    - name: Test Templates
+      run: dotnet test -c Release -f net8.0 --no-build --verbosity normal
+
+  publish:
+    name: Publish
+    needs: [test-sdks,  test-templates]
+    if: github.repository == 'linkoid/Repo.Sdks' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+    container: mcr.microsoft.com/dotnet/sdk:8.0
+    environment: NuGet
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build
+        run: dotnet build -c Release --nologo
+      - name: Push Packages
+        id: push-packages
+        run: |
+          json={
+          for project in Common.Build Plugin.Build Plugin.Templates; do
+            result=`dotnet build $project/$project.csproj -c Release -t:NuGetPush -getProperty:Version,PackageId,NuGetPushPushedPackages -p:NuGetPushApiKey=${{secrets.NUGET_APIKEY}}`
+            json=$json' "'$project'": '$result,
+          done
+          json=${json%,}' }'
+          echo $json
+          echo json=$json >> $GITHUB_OUTPUT
+    outputs:
+      packages: ${{ steps.push-packages.outputs.json }}
+
+  tag:
+    name: Tag
+    if: github.repository == 'linkoid/Repo.Sdks' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+    needs: publish
+    permissions:
+      contents: write
+    env:
+      GIT_TERMINAL_PROMPT: 0
+    steps:
+    - uses: actions/checkout@v4
+      with: 
+        fetch-depth: 0
+    - name: Git Config
+      run: |
+        git config user.name "github-actions[bot]"
+        git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+    - name: Tag Plugin.Build
+      if: ${{ fromJson(needs.publish.outputs.packages)['Plugin.Build'].Properties.NuGetPushPushedPackages }}
+      run: git tag Plugin.Build/${{ fromJson(needs.publish.outputs.packages)['Plugin.Build'].Properties.Version }}
+    - name: Tag Plugin.Templates
+      if: ${{ fromJson(needs.publish.outputs.packages)['Plugin.Build'].Properties.NuGetPushPushedPackages }}
+      run: git tag Plugin.Templates/${{ fromJson(needs.publish.outputs.packages)['Plugin.Templates'].Properties.Version }}
+    - name: Git Push Tags
+      run: git push origin --tags
+
+
+
+      
