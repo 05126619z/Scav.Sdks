@@ -52,7 +52,7 @@ jobs:
 
   publish:
     name: Publish
-    #needs: [test-sdks,  test-templates]
+    needs: [test-sdks,  test-templates]
     if: github.repository == 'linkoid/Repo.Sdks' && github.event_name == 'push'
     runs-on: ubuntu-latest
     container: mcr.microsoft.com/dotnet/sdk:8.0
@@ -100,7 +100,3 @@ jobs:
       run: git tag Plugin.Templates/${{ fromJson(needs.publish.outputs.packages)['Plugin.Templates'].Properties.PackageVersion }}
     - name: Git Push Tags
       run: git push origin --tags
-
-
-
-      
