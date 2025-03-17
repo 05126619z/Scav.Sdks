@@ -5,11 +5,14 @@
 
 
 # MSTest test Results
-[Tt]est[Rr]esults*/
+[Tt]est[Rr]esults*/**
 [Bb]uild[Ll]og.*
 
 # Repository specific files
 Plugin.Templates/Content/**/.runsettings
+
+# Include verified template test results
+![Tt]est[Rr]esults*/Snapshots/*.verified/
 
 # User-specific files
 *.rsuser
