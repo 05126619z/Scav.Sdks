@@ -10,7 +10,7 @@
   
   <PropertyGroup>
     <Authors>linkoid</Authors>
-    <VersionPrefix>0.2.1</VersionPrefix>
+    <VersionPrefix>0.2.2</VersionPrefix>
     <Copyright>Copyright (c) linkoid 2025</Copyright>
     <RepositoryUrl>https://github.com/linkoid/Repo.Sdks</RepositoryUrl>
     <RepositoryType>git</RepositoryType>

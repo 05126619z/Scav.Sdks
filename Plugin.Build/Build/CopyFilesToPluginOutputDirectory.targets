@@ -38,7 +38,7 @@
 
     <ItemGroup>
       <_BuiltPluginOutputItems Include="$([MSBuild]::EnsureTrailingSlash($(OutputPath)))**"
-                               Exclude="**/*.deps.json" />
+                               Exclude="$([MSBuild]::EnsureTrailingSlash($(OutputPath)))**/*.deps.json" />
 
       <!-- Don't copy netcode patcher original dll -->
       <_BuiltPluginOutputItems Remove="@(_BuiltPluginOutputItems->'%(RelativeDir)%(Filename)_original%(Extension)')" />
