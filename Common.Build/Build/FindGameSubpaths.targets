@@ -6,7 +6,7 @@
 
   <PropertyGroup>
     <GameExePath Condition="'$(GameExePath)' == ''">$([MSBuild]::NormalizePath($(GameDirectory), $(GameExe)))</GameExePath>
-    <GameManagedDirectory Condition="'$(GameManagedDirectory)' == ''">$([MSBuild]::NormalizeDirectory($(GameDirectory), REPO_Data, Managed))</GameManagedDirectory>
+    <GameManagedDirectory Condition="'$(GameManagedDirectory)' == ''">$([MSBuild]::NormalizeDirectory($(GameDirectory), CasualtiesUnknown_Data, Managed))</GameManagedDirectory>
   </PropertyGroup>
   
 </Project>

@@ -1,25 +1,25 @@
 <Project>
   <PropertyGroup>
-    <AssemblyName>Linkoid.Repo.$(MSBuildProjectName)</AssemblyName>
-    <RootNamespace>Linkoid.Repo.$(MSBuildProjectName)</RootNamespace>
+    <AssemblyName>05126619z.Scav.$(MSBuildProjectName)</AssemblyName>
+    <RootNamespace>05126619z.Scav.$(MSBuildProjectName)</RootNamespace>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <LangVersion>12</LangVersion>
+    <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
     <ImplicitUsings>disable</ImplicitUsings>
   </PropertyGroup>
   
   <PropertyGroup>
-    <Authors>linkoid</Authors>
+    <Authors>05126619z</Authors>
     <VersionPrefix>0.2.2</VersionPrefix>
     <Copyright>Copyright (c) linkoid 2025</Copyright>
-    <RepositoryUrl>https://github.com/linkoid/Repo.Sdks</RepositoryUrl>
+    <RepositoryUrl>https://github.com/05126619z/Scav.Sdks</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
   </PropertyGroup>
 
   <!-- NuGet Package Settings -->
   <PropertyGroup>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <PackageId>Linkoid.Repo.$(MSBuildProjectName)</PackageId>
+    <PackageId>05126619z.Scav.$(MSBuildProjectName)</PackageId>
     <PackageProjectUrl>$(RepositoryUrl)</PackageProjectUrl>
     <PackageIcon>logo.png</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>

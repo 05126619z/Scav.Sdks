@@ -24,7 +24,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <GameExe Condition="'$(GameExe)' == ''">REPO.exe</GameExe>
+    <GameExe Condition="'$(GameExe)' == ''">CasualtiesUnknown.exe</GameExe>
   </PropertyGroup>
   
 </Project>

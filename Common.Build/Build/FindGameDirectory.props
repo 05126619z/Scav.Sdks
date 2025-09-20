@@ -16,24 +16,30 @@ https://github.com/Pathoschild/SMAPI/blob/921d9d495747cd494bd06fc2ee689063a17873
 
     <!-- Derive from Steam library path -->
     <_SteamLibraryPath>$([MSBuild]::GetRegistryValueFromView('HKEY_CURRENT_USER\SOFTWARE\Valve\Steam', 'SteamPath', null, RegistryView.Registry32))</_SteamLibraryPath>
-    <GameDirectory Condition="!Exists($(GameDirectory)) and '$(_SteamLibraryPath)' != ''">$(_SteamLibraryPath)\steamapps\common\REPO</GameDirectory>
+    <GameDirectory Condition="!Exists($(GameDirectory)) and '$(_SteamLibraryPath)' != ''">$(_SteamLibraryPath)\steamapps\common\CasualtiesUnknown</GameDirectory>
 
     <!-- Steam paths -->
-    <GameDirectory Condition="!Exists($(GameDirectory))">C:\Program Files\Steam\steamapps\common\REPO</GameDirectory>
-    <GameDirectory Condition="!Exists($(GameDirectory))">C:\Program Files (x86)\Steam\steamapps\common\REPO</GameDirectory>
+    <GameDirectory Condition="!Exists($(GameDirectory))">C:\Program Files\Steam\steamapps\common\CasualtiesUnknown</GameDirectory>
+    <GameDirectory Condition="!Exists($(GameDirectory))">C:\Program Files (x86)\Steam\steamapps\common\CasualtiesUnknown</GameDirectory>
+	
+	<!-- Games Folder-->
+	<GameDirectory Condition="!Exists($(GameDirectory))">C:\Games\CasualtiesUnknown</GameDirectory>
+	  
+	<!-- Or try to get it from desktop (hah)-->
+	<GameDirectory Condition="!Exists($(GameDirectory))">C:\Users\$(HOME)\Desktop\CasualtiesUnknown</GameDirectory>
   </PropertyGroup>
 
   <!-- Linux -->
   <PropertyGroup Condition="$(OS) == 'Unix'">
-    <GameDirectory Condition="!Exists($(GameDirectory))">$(HOME)/.steam/steam/steamapps/common/REPO</GameDirectory>
-    <GameDirectory Condition="!Exists($(GameDirectory))">$(HOME)/.local/share/Steam/steamapps/common/REPO</GameDirectory>
-    <GameDirectory Condition="!Exists($(GameDirectory))">$(HOME)/.var/app/com.valvesoftware.Steam/data/Steam/steamapps/common/REPO</GameDirectory>
+    <GameDirectory Condition="!Exists($(GameDirectory))">$(HOME)/.steam/steam/steamapps/common/CasualtiesUnknown</GameDirectory>
+    <GameDirectory Condition="!Exists($(GameDirectory))">$(HOME)/.local/share/Steam/steamapps/common/CasualtiesUnknown</GameDirectory>
+    <GameDirectory Condition="!Exists($(GameDirectory))">$(HOME)/.var/app/com.valvesoftware.Steam/data/Steam/steamapps/common/CasualtiesUnknown</GameDirectory>
   </PropertyGroup>
   
   <!-- MacOS -->
   <PropertyGroup Condition="'$(OS)' == 'OSX' or $(OS) == 'Unix'">
-    <GameDirectory Condition="!Exists($(GameDirectory))">/Applications/REPO.app/Contents/MacOS</GameDirectory>
-    <GameDirectory Condition="!Exists($(GameDirectory))">$(HOME)/Library/Application Support/Steam/steamapps/common/REPO/Contents/MacOS</GameDirectory>
+    <GameDirectory Condition="!Exists($(GameDirectory))">/Applications/CasualtiesUnknown.app/Contents/MacOS</GameDirectory>
+    <GameDirectory Condition="!Exists($(GameDirectory))">$(HOME)/Library/Application Support/Steam/steamapps/common/CasualtiesUnknown/Contents/MacOS</GameDirectory>
   </PropertyGroup>
 
   <PropertyGroup>

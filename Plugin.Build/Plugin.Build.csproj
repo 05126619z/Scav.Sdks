@@ -8,7 +8,7 @@
     <Description>
       Provides MSBuild properties and targets for building and running a R.E.P.O. plugin.
     </Description>
-    <PackageTags>R.E.P.O., MSBuild, BepInEx, Plugin</PackageTags>
+    <PackageTags>CasualtiesUnknown, MSBuild, BepInEx, Plugin</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
